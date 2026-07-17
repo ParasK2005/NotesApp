@@ -1,0 +1,84 @@
+.note-card {
+    background: #1A1A2E;
+    border: 1px solid #2D2D44;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: .3s;
+}
+
+.note-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(139,92,246,.15);
+}
+
+.note-card h3 {
+    margin-top: 0;
+    color: white;
+}
+
+.note-card p {
+    color: #B8B8C7;
+    line-height: 1.6;
+}
+
+.note-card button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: .3s;
+}
+
+.note-card button:first-of-type {
+    background: #8B5CF6;
+    color: white;
+}
+
+.note-card button:first-of-type:hover {
+    background: #7C3AED;
+}
+
+.note-card button:last-of-type {
+    background: #EF4444;
+    color: white;
+}
+
+.note-card button:last-of-type:hover {
+    background: #DC2626;
+}
+.note-card {
+    transition: all 0.3s ease;
+}
+
+.note-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba(139,92,246,.25);
+    border-color: #8B5CF6;
+}
+button {
+    transition: all .25s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: scale(.97);
+}
+.note-card button:first-of-type {
+    background: #8B5CF6;
+}
+
+.note-card button:first-of-type:hover {
+    background: #7C3AED;
+}
+.note-card button:last-of-type {
+    background: #EF4444;
+}
+
+.note-card button:last-of-type:hover {
+    background: #DC2626;
+}

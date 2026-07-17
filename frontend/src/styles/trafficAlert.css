@@ -1,0 +1,132 @@
+.traffic-alert-banner {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 650px;
+  z-index: 9999;
+  background: rgba(245, 158, 11, 0.1); /* transparent amber */
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: all 0.3s ease;
+}
+
+.traffic-alert-content {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 18px;
+}
+
+.traffic-alert-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(245, 158, 11, 0.2);
+}
+
+.traffic-alert-icon {
+  font-size: 1.1rem;
+  color: #fbbf24; /* bright golden amber */
+  z-index: 2;
+}
+
+.traffic-alert-pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(245, 158, 11, 0.4);
+  animation: trafficPulse 2s infinite ease-in-out;
+  z-index: 1;
+}
+
+.traffic-alert-text {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #f3f4f6;
+  text-align: left;
+}
+
+.traffic-alert-title {
+  font-weight: 700;
+  color: #fbbf24;
+}
+
+.traffic-alert-message {
+  font-weight: 400;
+  color: rgba(243, 244, 246, 0.9);
+}
+
+.traffic-alert-dismiss {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: rgba(243, 244, 246, 0.5);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.traffic-alert-dismiss:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translate(-50%, -40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes trafficPulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .traffic-alert-banner {
+    width: 95%;
+    top: 8px;
+  }
+  .traffic-alert-text {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    font-size: 0.85rem;
+  }
+}

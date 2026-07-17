@@ -1,0 +1,22 @@
+.empty-state {
+    text-align: center;
+    background: #1A1A2E;
+    border: 1px solid #2D2D44;
+    border-radius: 12px;
+    padding: 60px 20px;
+}
+
+.empty-state span {
+    font-size: 70px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.empty-state h2 {
+    color: white;
+    margin-bottom: 10px;
+}
+
+.empty-state p {
+    color: #B8B8C7;
+}
