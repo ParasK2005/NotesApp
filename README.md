@@ -3,17 +3,16 @@
 <div align="center">
 
   <p align="center">
-    <strong>A sleek, local-first note-taking dashboard with real-time Markdown rendering, priority pinning, and instant search—powered by the Gemini AI API.</strong>
+    <strong>A sleek, full-stack note-taking dashboard with real-time Markdown rendering and advanced AI document/video processing powered by Gemini 3.5 Flash.</strong>
   </p>
 
   <h4>
     <a href="#-overview">Overview</a> •
+    <a href="#-preview">Preview</a> •
     <a href="#-ai-features">AI Features</a> •
     <a href="#-key-features">Key Features</a> •
     <a href="#-tech-stack">Tech Stack</a> •
     <a href="#-quick-start">Quick Start</a> •
-    <a href="#-productivity-shortcuts">Shortcuts</a> •
-    <a href="#-theme-customization">Theme Customization</a> •
     <a href="#-contributing">Contributing</a>
   </h4>
 
@@ -23,57 +22,65 @@
 
 ## 🌟 Overview
 
-**NotesApp** is a high-performance, developer-centric note-taking app designed to run entirely in the browser. It combines the simplicity of Markdown with the speed of local-first data persistence. With zero external dependencies, no server lag, and an instant-on search index, it is the ultimate companion for capturing code snippets, tasks, and ideas on the fly. 
+**NotesApp** is a high-performance, developer-centric full-stack note-taking application. It combines a responsive React frontend with a robust Node/Express backend, utilizing MongoDB for secure note persistence. 
 
-Now, with **Gemini AI API** integration, NotesApp acts as your intelligent co-writer, transforming raw thoughts into polished, organized notes instantly.
+The highlight of NotesApp is its integration with the **Gemini AI API** (via the modern `@google/genai` SDK), allowing users to upload documents, PDFs, or even video files and automatically generate structured, study-ready Markdown notes.
 
-> [!TIP]
-> **Why Local-First & AI?** Your notes are stored securely inside your browser's local storage for 100% privacy and offline speed, while AI processing is triggered on-demand using your Gemini API key.
+---
+
+## 📸 Preview
+
+<div align="center">
+  <img src="screenshots/nscreenshot.png" alt="NotesApp Dashboard Screenshot" width="800" style="border-radius: 8px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.35);" />
+</div>
 
 ---
 
 ## 🤖 Gemini AI Features
 
-Transform your raw text into structured intelligence with built-in AI utilities:
+Transform your files and media into structured Markdown intelligence:
 
-* ✨ **AI Summarization** — Instantly generate concise executive summaries of long articles, meeting minutes, or journals.
-* 🏷️ **Smart Tag Generation** — Let Gemini analyze your note's context and auto-generate relevant category tags.
-* 📋 **Action Item Extraction** — Automatically extract checklists, deadlines, and actionable tasks from your notes.
-* ✍️ **Tone & Style Refiner** — Polish draft text to be professional, academic, or casual with a single click.
-* 🧠 **Smart Q&A / Explain** — Select any portion of code or complex text inside your note and ask Gemini to explain it.
+* 📄 **Document & PDF Summarization** — Upload any study material, textbook chapters, or research papers and get structured concept notes.
+* 📝 **Step-by-Step Question Solver** — Select the "Question Paper" mode when uploading to automatically extract all questions and generate detailed, step-by-step solutions.
+* 🎥 **Video Lecture Notes** — Upload video files directly to the Gemini File API to generate summaries, timestamps, and key topics discussed.
+* ☁️ **Gemini File API Integration** — Seamlessly processes larger media files using Google's file streaming API.
 
 ---
 
 ## ⚡ Key Features
 
-| Feature | Description | Icon |
-| :--- | :--- | :---: |
-| **Real-time Dual-Pane Markdown** | Write note content in Markdown and watch it render instantly side-by-side. | ✍️ |
-| **Priority Pinning** | Pin critical items, to-do lists, or daily logs to keep them anchored at the top. | 📌 |
-| **Fuzzy-Search Index** | Instantly scan titles, tags, and content with real-time feedback. | 🔍 |
-| **Dynamic Tag Taxonomies** | Label notes with fluid, color-coded tag pills for quick categorization. | 🏷️ |
-| **Auto-Save & Storage** | Every keypress is synced locally. Never lose a word of your notes again. | 💾 |
-| **Universal Exports** | Export single notes or bulk backups as `.md`, `.txt`, or `.json` formats. | 📤 |
-| **Adaptive Glassmorphism** | Exquisite dark and light modes styled to blend naturally with your system. | 🎨 |
+* ✍️ **Dual-Pane Markdown Editor** — Standard notes can be written using Markdown with live previews.
+* 📌 **Priority Pinning** — Keep critical notes, daily logs, or checklists anchored at the top of your dashboard.
+* 🔍 **Fuzzy-Search Index** — Instantly filter notes by title or content.
+* 🔒 **JWT Authentication** — Complete user login and registration flow with encrypted password security.
+* 🎨 **Modern Responsive UI** — Clean grid layouts, responsive panels, and a sleek dark theme.
 
 ---
 
 ## 🛠️ Tech Stack
 
-We believe in keeping things fast and minimal. NotesApp is crafted with zero bloating frameworks:
+### Frontend
+- **React.js** (Vite build tool)
+- **CSS3** (Fluid variables, responsive layout styling)
+- **Axios** (API requests orchestration)
 
-- **HTML5 & CSS3**: For structural markup and responsive grid-based layouts utilizing smooth transition variables.
-- **Pure JavaScript (ES6+)**: Handles the state management, Markdown parsing engine, search algorithms, and offline synchronization.
-- **Gemini AI SDK / Native API**: Integrates Google's Gemini models for on-demand intelligence.
-- **FontAwesome Vector Library**: Renders crisp iconography across the control panel.
+### Backend
+- **Node.js** & **Express.js** (REST API)
+- **MongoDB** & **Mongoose** (Data schema & persistence)
+- **Multer** (File upload middleware)
+
+### AI Engine
+- **Google GenAI SDK** (`@google/genai`)
+- **Model**: `gemini-3.5-flash`
+- **API integrations**: Google File API upload & get, content generation.
 
 ```mermaid
 graph TD
-    A[Browser View / DOM] -->|User Input| B(State Controller)
-    B -->|Persist Data| C[(Local Storage)]
-    B -->|Compile Markdown| D[Markdown Render Engine]
-    D -->|Update View| A
-    B -->|Filter Content| E[Fuzzy Search Engine]
-    E -->|Refiltered Cards| A
-    B -->|Request AI Insight| F[Gemini AI API]
-    F -->|Return Summary / Tags| B
+    A[React Dashboard] -->|User Uploads File| B[Express Backend]
+    B -->|Upload to File API| C[Gemini File API]
+    C -->|Processing| C
+    C -->|File URI ready| D[Gemini 3.5 Flash Model]
+    B -->|Generate notes prompt| D
+    D -->|Markdown Output| B
+    B -->|Persist note| E[(MongoDB)]
+    B -->|Return JSON| A
